@@ -25,44 +25,32 @@ Therefore, transport quantities must be computed using an **effective carrier de
 
 Bare 2D carrier density:
 
-[
-n_1 = \frac{p}{a^2}
-]
+n1 = p / a^2
 
 where
 ( a = 3.86 ) Å — CuO(_2) lattice constant.
 
 Fermi-liquid limit density:
 
-[
-n_2 = \frac{p + 1}{a^2}
-]
+n2 = (p + 1) / a^2
 
 Fraction of autolocalized carriers:
 
-[
-K_1 = \frac{n_{bip}}{n_1}
-]
+K1 = nbip / n1
 
 Effective Hall carrier density:
 
-[
-n_H = K_1 n_1 + (1 - K_1)\frac{n_2}{K_2}
-]
+n_H = K1 * n1 + (1 - K1) * n2 / K2
 
 where ( K_2 ) is a phenomenological factor describing Fermi surface reconstruction and anomalous scattering.
 
 Since in a 2D Fermi liquid:
 
-[
-\mu \propto n
-]
+Δμ ∝ dn
 
 the chemical potential is corrected via:
 
-[
-\Delta \mu \propto (n_H - n_1)
-]
+Delta_mu ∝ (n_H - n1)
 
 This ensures that thermoelectric quantities are calculated using the **effective Fermi-surface carrier density** rather than nominal doping.
 
@@ -78,10 +66,7 @@ Two alternative descriptions are implemented.
 
 For degenerate carriers:
 
-[
-S = \frac{\pi^2}{3}\frac{k_B^2 T}{\mu}
-]
-
+S = (pi^2 / 3) * (kB^2 * T / mu)
 This corresponds to the Mott formula for a 2D electron gas.
 
 ---
@@ -89,31 +74,17 @@ This corresponds to the Mott formula for a 2D electron gas.
 ## (B) Semiconductor Regime — Fermi–Dirac Integrals
 
 Numerical Fermi–Dirac integral:
-
-[
-F_j(\eta) =
-\int_0^{\infty}
-\frac{x^j}{e^{x-\eta}+1} dx
-]
+F_j(eta) = ∫0^∞ x^j / (exp(x - eta) + 1) dx
 
 where
 
-[
-\eta = \frac{\mu}{k_B T}
-]
+η = μ/kT
 
 The implementation uses an asymptotic exponential tail treatment to avoid overflow during numerical integration.
 
 Semi-classical Seebeck coefficient:
 
-[
-S = k_B
-\left(
-\frac{(r+2)F_{r+1}(\eta)}{(r+1)F_r(\eta)}
-
-* \eta
-  \right)
-  ]
+S = kB * ((r + 2) * F_{r+1}(eta) / ((r + 1) * F_r(eta)) - eta)
 
 Scattering parameter:
 
@@ -126,15 +97,13 @@ Scattering parameter:
 
 Bipolaron thermopower is estimated within an electron-gas approximation:
 
-[
-S_{bip} \approx \frac{k_B}{2e}
-]
+S_bip ≈ kB / (2 * e)
 
 The total Seebeck coefficient is calculated as:
 
-[
-S = w_{deloc} S_{deloc} + w_{bip} S_{bip}
-]
+
+S = w_deloc * S_deloc + w_bip * S_bip
+
 
 In the superconducting (condensed) state, the Seebeck coefficient is set to zero.
 
@@ -156,7 +125,7 @@ Within each record:
 * `nums[0]` → doping ( p )
 * `nums[1]` → temperature ( T )
 * `nums[9]` → chemical potential
-* `nums[12]` → condensate indicator
+* `nums[12]` → condensate bipolaron indicator
 
 ---
 
