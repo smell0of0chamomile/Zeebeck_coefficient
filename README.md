@@ -191,6 +191,17 @@ Overall, the results suggest that the two-liquid framework captures the main phy
 
 ---
 
-# Purpose
+# 8. Purpose
 
 This code is intended for research and model exploration of thermoelectric properties in strongly correlated superconducting systems within a two-liquid framework.
+
+# 9. Reference
+
+The comparison in this project is based on the results reported in:
+
+Alexandrov, A. S., Kabanov, V. V., & Mott, N. F.
+**Hall Effect and Resistivity in High-Tc Superconductors**
+Physical Review B 48, 557 (1993)
+
+DOI: https://doi.org/10.1103/PhysRevB.48.557
+
