@@ -155,6 +155,40 @@ The program:
 3. Applies Hall correction and transport model
 4. Plots ( S(T) ) for different doping levels
 
+# 7. Results and Model Comparison
+
+The calculated Seebeck coefficient curves were compared with experimental trends reported in the reference article.
+
+Overall, the model reproduces the qualitative behavior of the Seebeck coefficient for several doping levels. In particular, at **low doping (p ≈ 0.1)** the calculated curves are close to those reported in the literature.
+
+However, deviations appear near the **optimal doping level (p ≈ 0.15)**.
+In this regime the calculated Seebeck coefficient increases with temperature for hole-like transport, while experimentally it should decrease. This indicates that the current model does not fully capture the temperature dependence of the system.
+
+A likely reason is the treatment of the **chemical potential**.
+In the present implementation of the metallic model the chemical potential is assumed to be constant, while physically it should decrease with increasing temperature. This effect is not yet included and likely contributes to the discrepancy.
+
+Two transport descriptions for delocalized carriers were tested:
+
+1. **Metallic model (Mott formula)**
+   Provides qualitatively correct behavior but fails to reproduce the temperature dependence near optimal doping due to the constant chemical potential approximation.
+
+2. **Semiconductor model using Fermi–Dirac integrals**
+
+   Two scattering mechanisms were considered:
+
+   * **r = 0 — acoustic phonon scattering**
+     This case produced results closest to theoretical expectations.
+
+   * **r = 1 — ionized impurity scattering**
+     This scenario was tested for comparison but showed larger deviations from the expected behavior.
+
+Additionally, the **Hall carrier density correction** was implemented in order to account for Fermi surface reconstruction effects.
+
+When the Hall correction is included, the resulting curves become qualitatively closer to the reference article. However, the Seebeck coefficient decreases too rapidly with temperature, indicating that further refinement of the model is required.
+
+Overall, the results suggest that the two-liquid framework captures the main physical trends but requires a more realistic temperature dependence of the chemical potential and possibly improved weighting of the carrier subsystems.
+
+
 ---
 
 # Purpose
